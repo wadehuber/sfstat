@@ -8,6 +8,8 @@ public class Scores
 	private int[] scores;
 	private int count;
 
+	
+	// Constructors
 	public Scores(String fileString, int scoreCount) 
 	{
 		String[] splitLine = fileString.split(",");
@@ -25,6 +27,7 @@ public class Scores
 		this.scores = scores;
 		count = scores.length;
 	}
+	
 	public String getJudge() 
 	{
 		return judge;
@@ -41,9 +44,9 @@ public class Scores
 	{
 		this.scores = scores;
 	}
+	
 	public String toString() 
 	{
-		return "Scores [judge=" + judge + ", scores=" + Arrays.toString(scores)
-				+ "]";
+		return "Judge " + judge + ":" + Arrays.toString(scores);
 	}
 }
