@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class sfstat 
+public class Sfstat 
 {
 	public static void main(String[] args) 
 	{
@@ -12,6 +12,7 @@ public class sfstat
 		String line;
 		String filename="sfdata.csv";
 		Scores tempScore;
+		int SCORE_COUNT = 20;
 		
 		int ii = 0;
 		
@@ -21,7 +22,9 @@ public class sfstat
 			while (dataFile.hasNext()) 
 			{
 				line = dataFile.nextLine();
-				tempScore = new Scores(line, 20);
+				tempScore = new Scores(line, SCORE_COUNT);
+				Entry nEntry = new Entry(ii);
+				System.out.println(nEntry.getEntry());
 				System.out.println("Line " + ii + ": " + tempScore);
 				ii ++;
 			}
