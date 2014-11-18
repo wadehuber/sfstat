@@ -44,6 +44,10 @@ public class Scores
 	{
 		this.scores = scores;
 	}
+	public int getCount() 
+	{
+		return count;
+	}
 	
 	public String toString() 
 	{
