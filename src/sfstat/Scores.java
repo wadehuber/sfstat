@@ -2,46 +2,48 @@ package sfstat;
 
 import java.util.Arrays;
 
-public class Scores {
-	
+public class Scores 
+{
 	private String judge;
 	private int[] scores;
 	private int count;
 
-	
-	public Scores(String fileString, int scoreCount) {
+	public Scores(String fileString, int scoreCount) 
+	{
 		String[] splitLine = fileString.split(",");
 		judge = splitLine[2];
 		scores = new int[scoreCount];
-		for(int ii=0;ii<scoreCount;ii++) {
+		for(int ii=0;ii<scoreCount;ii++) 
+		{
 			scores[ii] = Integer.parseInt(splitLine[ii+3]); 
 		}
 	}
-	
-	public Scores(String judge, int[] scores) {
+	public Scores(String judge, int[] scores) i
+	{
 		super();
 		this.judge = judge;
 		this.scores = scores;
 		count = scores.length;
 	}
-
-	
-	public String getJudge() {
+	public String getJudge() 
+	{
 		return judge;
 	}
-	public void setJudge(String judge) {
+	public void setJudge(String judge) 
+	{
 		this.judge = judge;
 	}
-	public int[] getScores() {
+	public int[] getScores() 
+	{
 		return scores;
 	}
-	public void setScores(int[] scores) {
+	public void setScores(int[] scores) 
+	{
 		this.scores = scores;
 	}
-	
-	public String toString() {
+	public String toString() 
+	{
 		return "Scores [judge=" + judge + ", scores=" + Arrays.toString(scores)
 				+ "]";
 	}
-
 }
