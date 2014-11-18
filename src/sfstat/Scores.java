@@ -15,10 +15,12 @@ public class Scores
 		String[] splitLine = fileString.split(",");
 		judge = splitLine[2];
 		scores = new int[scoreCount];
+		count = scoreCount;
 		for(int ii=0;ii<scoreCount;ii++) 
 		{
 			scores[ii] = Integer.parseInt(splitLine[ii+3]); 
 		}
+		
 	}
 	public Scores(String judge, int[] scores) 
 	{
@@ -49,8 +51,18 @@ public class Scores
 		return count;
 	}
 	
+	public int getTotal()
+	{
+		int sum = 0;
+		for(int ii=0;ii<count;ii++)
+		{
+			sum += scores[ii];  
+		}
+		return sum;	
+	}
+	
 	public String toString() 
 	{
-		return "Judge " + judge + ":" + Arrays.toString(scores);
+		return "Judge " + judge + ": " + getTotal() + "   scores: " + Arrays.toString(scores);
 	}
 }
