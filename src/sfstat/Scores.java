@@ -18,7 +18,7 @@ public class Scores
 			scores[ii] = Integer.parseInt(splitLine[ii+3]); 
 		}
 	}
-	public Scores(String judge, int[] scores) i
+	public Scores(String judge, int[] scores) 
 	{
 		super();
 		this.judge = judge;
