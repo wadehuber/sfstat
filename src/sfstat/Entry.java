@@ -2,33 +2,28 @@ package sfstat;
 
 public class Entry 
 {
-	private int entry;
+	private String entry;
 
-	public Entry(int entry)
+	public Entry(String line)
 	{
-		setEntry(entry);
+		setEntry(line);
 	}
-	public void setEntry(int entry)
+	public void setEntry(String line)
 	{
-		this.entry = entry;
+		int next = findFirstComma(line);
+		this.entry = line.substring(0, next);
 	}
-	public int getEntry()
+	public String getEntry()
 	{
 		return entry;
 	}
-	public static int getEntry(int entry, Scores tempScore)
+	public static int findFirstComma(String line)
 	{
-		if (entry == 0)
+		int count = 0;
+		while (line.charAt(count) != ',')
 		{
-			return 1;
+			count++;
 		}
-		else if (tempScore.getJudge().charAt(0) != 'A')
-		{
-			return entry;
-		}
-		else
-		{
-			return entry + 1;
-		}
+		return count;
 	}
 }

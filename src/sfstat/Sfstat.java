@@ -11,9 +11,9 @@ public class Sfstat
 		Scanner dataFile;
 		String line;
 		String filename="sfdata.csv";
+		String entry;
 		Scores tempScore;
 		int SCORE_COUNT = 20;
-		int entry = 0;
 		
 		try 
 		{
@@ -22,8 +22,8 @@ public class Sfstat
 			{
 				line = dataFile.nextLine();
 				tempScore = new Scores(line, SCORE_COUNT);
-				entry = Entry.getEntry(entry, tempScore);
-				Entry nEntry = new Entry(entry);
+				Entry nEntry = new Entry(line);
+				entry = nEntry.getEntry();
 				System.out.println("Entry " + nEntry.getEntry() + ": " + tempScore);
 			}
 		} 
