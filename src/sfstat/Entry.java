@@ -16,4 +16,19 @@ public class Entry
 	{
 		return entry;
 	}
+	public static int getEntry(int entry, Scores tempScore)
+	{
+		if (entry == 0)
+		{
+			return 1;
+		}
+		else if (tempScore.getJudge().charAt(0) != 'A')
+		{
+			return entry;
+		}
+		else
+		{
+			return entry + 1;
+		}
+	}
 }

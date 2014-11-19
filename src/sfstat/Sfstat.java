@@ -22,7 +22,7 @@ public class Sfstat
 			{
 				line = dataFile.nextLine();
 				tempScore = new Scores(line, SCORE_COUNT);
-				entry = getEntry(entry, tempScore);
+				entry = Entry.getEntry(entry, tempScore);
 				Entry nEntry = new Entry(entry);
 				System.out.println("Entry " + nEntry.getEntry() + ": " + tempScore);
 			}
@@ -30,21 +30,6 @@ public class Sfstat
 		catch (FileNotFoundException e) 
 		{
 			System.out.println("Error Reading file");
-		}
-	}
-	public static int getEntry(int entry, Scores tempScore)
-	{
-		if (entry == 0)
-		{
-			return 1;
-		}
-		else if (tempScore.getJudge().charAt(0) != 'A')
-		{
-			return entry;
-		}
-		else
-		{
-			return entry + 1;
 		}
 	}
 }
