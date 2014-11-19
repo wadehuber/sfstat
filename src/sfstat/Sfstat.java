@@ -13,8 +13,7 @@ public class Sfstat
 		String filename="sfdata.csv";
 		Scores tempScore;
 		int SCORE_COUNT = 20;
-		
-		int ii = 0;
+		int entry = 0;
 		
 		try 
 		{
@@ -23,15 +22,29 @@ public class Sfstat
 			{
 				line = dataFile.nextLine();
 				tempScore = new Scores(line, SCORE_COUNT);
-				Entry nEntry = new Entry(ii);
-				System.out.println(nEntry.getEntry());
-				System.out.println("Line " + ii + ": " + tempScore);
-				ii ++;
+				entry = getEntry(entry, tempScore);
+				Entry nEntry = new Entry(entry);
+				System.out.println("Entry " + nEntry.getEntry() + ": " + tempScore);
 			}
 		} 
 		catch (FileNotFoundException e) 
 		{
 			System.out.println("Error Reading file");
+		}
+	}
+	public static int getEntry(int entry, Scores tempScore)
+	{
+		if (entry == 0)
+		{
+			return 1;
+		}
+		else if (tempScore.getJudge().charAt(0) != 'A')
+		{
+			return entry;
+		}
+		else
+		{
+			return entry + 1;
 		}
 	}
 }
