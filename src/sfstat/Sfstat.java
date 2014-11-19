@@ -20,11 +20,19 @@ public class Sfstat
 			dataFile = new Scanner(new File(filename));
 			while (dataFile.hasNext()) 
 			{
+				String thisEntry;
 				line = dataFile.nextLine();
 				tempScore = new Scores(line, SCORE_COUNT);
+				String[] splitLine = line.split(",");
+				
+				thisEntry = splitLine[0];
+				System.out.print("Entry " + thisEntry);
+			//	Entry nEntry = new Entry(thisEntry);
+				// loop to add scores 
+
 				Entry nEntry = new Entry(line);
 				entry = nEntry.getEntry();
-				System.out.println("Entry " + nEntry.getEntry() + ": " + tempScore);
+				System.out.println(" Entry " + nEntry.getEntry() + ": " + tempScore);
 			}
 		} 
 		catch (FileNotFoundException e) 
