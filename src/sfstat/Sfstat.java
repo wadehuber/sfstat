@@ -2,6 +2,7 @@ package sfstat;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.DecimalFormat;
 import java.util.Scanner;
 import java.util.Arrays;
 
@@ -46,6 +47,13 @@ public class Sfstat
 			System.out.println("Error Reading file");
 		}
 		
-		System.out.println("All Stats: \n" + stats);
+		DecimalFormat df = new DecimalFormat("#.0");
+		System.out.println("\nAverage total: " + df.format(stats.getAverageTotal()));
+		System.out.print("Average scores: [");
+		double averages[] = stats.getAverageScores();
+		for(int ii=0;ii<averages.length-1;ii++) {
+			System.out.print(df.format(averages[ii]) + ", ");
+		}
+		System.out.println(df.format(averages[averages.length-1]) + "]");
 	}
 }

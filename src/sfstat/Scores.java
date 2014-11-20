@@ -53,6 +53,10 @@ public class Scores
 		return count;
 	}
 	
+	public int getScoreCount() { 
+		return scores.length;
+	}
+	
 	public int getTotal()
 	{
 		int sum = 0;
