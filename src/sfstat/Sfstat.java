@@ -13,6 +13,7 @@ public class Sfstat
 		String line;
 		String filename="sfdata.csv";
 		Scores tempScore;
+		StatGenerator stats = new StatGenerator();
 		int SCORE_COUNT = 20;
 		
 		try 
@@ -27,6 +28,7 @@ public class Sfstat
 
 				line = dataFile.nextLine();
 				tempScore = new Scores(line, SCORE_COUNT);
+				stats.addScore(tempScore); // Add all scores to a StatGenerator
 				String[] splitLine = line.split(",");
 				thisEntry = splitLine[0];
 				thisScore = tempScore.getScores(); 
@@ -43,5 +45,7 @@ public class Sfstat
 		{
 			System.out.println("Error Reading file");
 		}
+		
+		System.out.println("All Stats: \n" + stats);
 	}
 }
