@@ -3,27 +3,27 @@ package sfstat;
 public class Entry 
 {
 	private String entry;
+	private int[] score;
 
-	public Entry(String line)
+	public Entry(String entry, int[] score)
 	{
-		setEntry(line);
+		setEntry(entry);
+		setScore(score);
 	}
-	public void setEntry(String line)
+	public void setEntry(String entry)
 	{
-		int next = findFirstComma(line);
-		this.entry = line.substring(0, next);
+		this.entry = entry;
+	}
+	public void setScore(int[] score)
+	{
+		this.score = score;
 	}
 	public String getEntry()
 	{
 		return entry;
 	}
-	public static int findFirstComma(String line)
+	public int[] getScore()
 	{
-		int count = 0;
-		while (line.charAt(count) != ',')
-		{
-			count++;
-		}
-		return count;
+		return score;
 	} 
 }

@@ -3,6 +3,7 @@ package sfstat;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class Sfstat 
 {
@@ -11,28 +12,31 @@ public class Sfstat
 		Scanner dataFile;
 		String line;
 		String filename="sfdata.csv";
-		String entry;
 		Scores tempScore;
 		int SCORE_COUNT = 20;
 		
 		try 
 		{
 			dataFile = new Scanner(new File(filename));
+			// loop to add scores 
 			while (dataFile.hasNext()) 
 			{
 				String thisEntry;
+				String entry, scores, judge;
+				int[] thisScore;
+
 				line = dataFile.nextLine();
 				tempScore = new Scores(line, SCORE_COUNT);
 				String[] splitLine = line.split(",");
-				
 				thisEntry = splitLine[0];
-				System.out.print("Entry " + thisEntry);
-			//	Entry nEntry = new Entry(thisEntry);
-				// loop to add scores 
+				thisScore = tempScore.getScores(); 
+				Entry nEntry = new Entry(thisEntry, thisScore);
 
-				Entry nEntry = new Entry(line);
 				entry = nEntry.getEntry();
-				System.out.println(" Entry " + nEntry.getEntry() + ": " + tempScore);
+				scores = Arrays.toString(nEntry.getScore());
+				judge = tempScore.getJudge();
+				
+				System.out.println(" Entry: " + entry + " Judge: " + judge + " Scores: " + scores);
 			}
 		} 
 		catch (FileNotFoundException e) 

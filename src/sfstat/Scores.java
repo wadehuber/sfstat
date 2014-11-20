@@ -14,13 +14,7 @@ public class Scores
 	{
 		String[] splitLine = fileString.split(",");
 		judge = splitLine[2];
-		scores = new int[scoreCount];
-		count = scoreCount;
-		for(int ii=0;ii<scoreCount;ii++) 
-		{
-			scores[ii] = Integer.parseInt(splitLine[ii+3]); 
-		}
-		
+		gatherScores(scoreCount, splitLine);
 	}
 	public Scores(String judge, int[] scores) 
 	{
@@ -29,7 +23,15 @@ public class Scores
 		this.scores = scores;
 		count = scores.length;
 	}
-	
+	public void gatherScores(int scoreCount, String[] splitLine)
+	{
+		scores = new int[scoreCount];
+		count = scoreCount;
+		for(int ii=0;ii<scoreCount;ii++) 
+		{
+			scores[ii] = Integer.parseInt(splitLine[ii+3]); 
+		}
+	}
 	public String getJudge() 
 	{
 		return judge;
