@@ -49,11 +49,28 @@ public class Sfstat
 		
 		DecimalFormat df = new DecimalFormat("#.0");
 		System.out.println("\nAverage total: " + df.format(stats.getAverageTotal()));
-		System.out.print("Average scores: [");
+		System.out.print("Mean scores: [");
 		double averages[] = stats.getAverageScores();
 		for(int ii=0;ii<averages.length-1;ii++) {
 			System.out.print(df.format(averages[ii]) + ", ");
 		}
+		
 		System.out.println(df.format(averages[averages.length-1]) + "]");
+
+		int modes[] = stats.getModeScores();
+		System.out.print("Modes: [ ");
+		for (int ii=0;ii<modes.length;ii++ ) {
+			System.out.print(modes[ii] + " ");
+		}
+		System.out.println(" ]");
+
+		double medians[] = stats.getMedianScores();
+		System.out.print("Medians: [ ");
+		for (int ii=0;ii<medians.length;ii++ ) {
+			System.out.print(medians[ii] + " ");
+		}
+		System.out.println(" ]");
+		
 	}
+
 }
