@@ -51,7 +51,7 @@ public class StatGenerator {
 		
 		for (int ii=0;ii<scores.get(0).getCount();ii++) {
 			int[] categoryScores = extractOneScore(ii);
-			modes[ii] = mode(categoryScores);
+			modes[ii] = IntArrayStats.mode(categoryScores);
 		}
 		
 		return modes;
@@ -63,59 +63,12 @@ public class StatGenerator {
 		
 		for (int ii=0;ii<scores.get(0).getCount();ii++) {
 			int[] categoryScores = extractOneScore(ii);
-			medians[ii] = median(categoryScores);
+			medians[ii] = IntArrayStats.median(categoryScores);
 		}
 		
 		return medians;
 	}
 
-
-	private double median(int[] a) {
-		int[] vals = a.clone();
-		Arrays.sort(vals);
-		double ret = 0;
-
-		if (vals.length % 2 != 0) {
-			ret = (double) vals[vals.length / 2];
-		}
-		else {
-			ret = (vals[vals.length / 2] + vals[(vals.length / 2) + 1]) / 2.0;
-		}
-		
-		return ret;
-	}
-	
-	private int mode(int[] a) {
-		int mode = 0;
-		int modeCount = 1;
-		int current = 0;
-		int count = 1;
-		
-		int[] vals = a.clone();
-		Arrays.sort(vals);
-		
-		for (int ii=1;ii<vals.length;ii++) {
-			if(vals[ii] == vals[current]) {
-				count++;
-			}
-			else {
-				if (count > modeCount) { 
-					mode = ii - 1;
-					modeCount = count;
-				}
-				current = ii;
-				count = 1;
-			}
-		}
-		
-		if (count > modeCount) { 
-			mode = vals.length-1;
-			modeCount = count;
-		}
-	
-		return vals[mode];
-	}
-	
 	private int[] extractOneScore(int scoreIndex) {
 	
 		int myInts[] = new int[scores.size()];
