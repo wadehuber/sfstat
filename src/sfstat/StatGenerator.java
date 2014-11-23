@@ -79,7 +79,7 @@ public class StatGenerator {
 			ret = (double) vals[vals.length / 2];
 		}
 		else {
-			ret = (vals[vals.length / 2] + vals[(vals.length / 2) + 1]) / 2;
+			ret = (vals[vals.length / 2] + vals[(vals.length / 2) + 1]) / 2.0;
 		}
 		
 		return ret;
@@ -89,17 +89,17 @@ public class StatGenerator {
 		int mode = 0;
 		int modeCount = 1;
 		int current = 0;
-		int count = 0;
+		int count = 1;
 		
 		int[] vals = a.clone();
 		Arrays.sort(vals);
 		
-		for (int ii=0;ii<vals.length;ii++) {
+		for (int ii=1;ii<vals.length;ii++) {
 			if(vals[ii] == vals[current]) {
 				count++;
 			}
 			else {
-				if (count > modeCount) {
+				if (count > modeCount) { 
 					mode = ii - 1;
 					modeCount = count;
 				}
@@ -108,6 +108,11 @@ public class StatGenerator {
 			}
 		}
 		
+		if (count > modeCount) { 
+			mode = vals.length-1;
+			modeCount = count;
+		}
+	
 		return vals[mode];
 	}
 	
