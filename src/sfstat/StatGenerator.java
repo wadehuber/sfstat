@@ -26,6 +26,19 @@ public class StatGenerator {
 		return (double) total / (double) scores.size();
 	}	
 	
+	public int[] getTotalsArray() {
+		int[] totals = new int[scores.size()];
+		
+		int ii=0;			
+		
+		for (Scores s : scores) {
+			totals[ii] = s.getTotal();
+			ii++;
+		}
+
+		return totals;
+	}
+	
 	public double[] getAverageScores() {
 		
 		int numSubScores = scores.get(0).getCount();
@@ -50,7 +63,7 @@ public class StatGenerator {
 		
 		
 		for (int ii=0;ii<scores.get(0).getCount();ii++) {
-			int[] categoryScores = extractOneScore(ii);
+			int[] categoryScores = extractOneColumn(ii);
 			modes[ii] = IntArrayStats.mode(categoryScores);
 		}
 		
@@ -62,14 +75,14 @@ public class StatGenerator {
 		
 		
 		for (int ii=0;ii<scores.get(0).getCount();ii++) {
-			int[] categoryScores = extractOneScore(ii);
+			int[] categoryScores = extractOneColumn(ii);
 			medians[ii] = IntArrayStats.median(categoryScores);
 		}
 		
 		return medians;
 	}
 
-	private int[] extractOneScore(int scoreIndex) {
+	private int[] extractOneColumn(int scoreIndex) {
 	
 		int myInts[] = new int[scores.size()];
 		int ii=0;

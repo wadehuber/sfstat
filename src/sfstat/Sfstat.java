@@ -58,19 +58,23 @@ public class Sfstat
 		System.out.println(df.format(averages[averages.length-1]) + "]");
 
 		int modes[] = stats.getModeScores();
-		System.out.print("Modes: [ ");
-		for (int ii=0;ii<modes.length;ii++ ) {
-			System.out.print(modes[ii] + " ");
-		}
-		System.out.println(" ]");
+		System.out.print("Modes: ");
+		IntArrayStats.printArray(modes);
 
 		double medians[] = stats.getMedianScores();
-		System.out.print("Medians: [ ");
+		System.out.print("\nMedians: [ ");
 		for (int ii=0;ii<medians.length;ii++ ) {
 			System.out.print(medians[ii] + " ");
 		}
 		System.out.println(" ]");
 		
+		int totals[] = stats.getTotalsArray();
+		System.out.print("Totals: ");
+		IntArrayStats.printArray(totals);
+		
+		System.out.print("\nClusters: ");
+		IntArrayStats.getClusters(totals);
 	}
+	
 
 }
