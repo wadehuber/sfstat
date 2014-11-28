@@ -36,10 +36,12 @@ public class Sfstat
 				Entry nEntry = new Entry(thisEntry, thisScore);
 
 				entry = nEntry.getEntry();
-				scores = Arrays.toString(nEntry.getScore());
-				judge = tempScore.getJudge();
+				//scores = Arrays.toString(nEntry.getScore());
+				//judge = tempScore.getJudge();
 				
-				System.out.println(" Entry: " + entry + " Judge: " + judge + " Scores: " + scores);
+				//System.out.println(" Entry: " + entry + " Judge: " + judge + " Scores: " + scores);
+				System.out.println("Entry: " + entry + " " + tempScore.toString());
+
 			}
 		} 
 		catch (FileNotFoundException e) 
