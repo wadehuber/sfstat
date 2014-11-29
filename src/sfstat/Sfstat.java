@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
 import java.util.Scanner;
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class Sfstat 
 {
@@ -16,6 +16,8 @@ public class Sfstat
 		Scores tempScore;
 		StatGenerator stats = new StatGenerator();
 		int SCORE_COUNT = 20;
+		String lastEntry = "";
+		ArrayList<Scores> ALScores = new ArrayList<Scores>();
 		
 		try 
 		{
@@ -24,36 +26,28 @@ public class Sfstat
 			while (dataFile.hasNext()) 
 			{
 				String thisEntry;
-				String entry, scores, judge;
-				int[] thisScore;
 
 				line = dataFile.nextLine();
 				tempScore = new Scores(line, SCORE_COUNT);
 				stats.addScore(tempScore); // Add all scores to a StatGenerator
 				String[] splitLine = line.split(",");
 				thisEntry = splitLine[0];
-				thisScore = tempScore.getScores(); 
-				Entry nEntry = new Entry(thisEntry, thisScore);
-
-				entry = nEntry.getEntry();
-				//scores = Arrays.toString(nEntry.getScore());
-				//judge = tempScore.getJudge();
-				
-				//System.out.println(" Entry: " + entry + " Judge: " + judge + " Scores: " + scores);
-				System.out.println("Entry: " + entry + " " + tempScore.toString());
-
+				ALScores = Scores.getALScores(lastEntry, thisEntry, tempScore, ALScores);
+				System.out.println("lastEntry: " + lastEntry + " thisEntry: " + thisEntry + " " + tempScore.toString());
+				lastEntry = thisEntry;
 			}
 		} 
 		catch (FileNotFoundException e) 
 		{
 			System.out.println("Error Reading file");
 		}
-		
+
 		DecimalFormat df = new DecimalFormat("#.0");
 		System.out.println("\nAverage total: " + df.format(stats.getAverageTotal()));
 		System.out.print("Mean scores: [");
 		double averages[] = stats.getAverageScores();
-		for(int ii=0;ii<averages.length-1;ii++) {
+		for(int ii=0;ii<averages.length-1;ii++) 
+		{
 			System.out.print(df.format(averages[ii]) + ", ");
 		}
 		
@@ -65,7 +59,8 @@ public class Sfstat
 
 		double medians[] = stats.getMedianScores();
 		System.out.print("\nMedians: [ ");
-		for (int ii=0;ii<medians.length;ii++ ) {
+		for (int ii=0;ii<medians.length;ii++ ) 
+		{
 			System.out.print(medians[ii] + " ");
 		}
 		System.out.println(" ]");
@@ -77,6 +72,4 @@ public class Sfstat
 		System.out.print("\nClusters: ");
 		IntArrayStats.getClusters(totals);
 	}
-	
-
 }

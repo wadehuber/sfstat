@@ -1,7 +1,6 @@
 package sfstat;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class StatGenerator {
 	
