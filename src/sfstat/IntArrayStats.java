@@ -4,6 +4,14 @@ import java.util.Arrays;
 
 public class IntArrayStats {
 	
+	public static double mean (int [] a) {
+		int total = 0;
+		for (int ii=0;ii<a.length;ii++) {
+			total += a[ii];
+		}
+		return (total / (double) a.length);
+	}
+	
 	public static double median(int[] a) {
 		int[] vals = a.clone();
 		Arrays.sort(vals);

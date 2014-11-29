@@ -56,7 +56,7 @@ public class Sfstat
 		int modes[] = stats.getModeScores();
 		System.out.print("Modes: ");
 		IntArrayStats.printArray(modes);
-
+		
 		double medians[] = stats.getMedianScores();
 		System.out.print("\nMedians: [ ");
 		for (int ii=0;ii<medians.length;ii++ ) 
