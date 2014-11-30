@@ -1,14 +1,12 @@
 package sfstat;
 
 import java.util.Arrays;
-import java.util.ArrayList;
 
 public class Scores 
 {
 	private String judge;
 	private int[] scores;
 	private int count;
-
 	
 	// Constructors
 	public Scores(String fileString, int scoreCount) 
@@ -23,20 +21,6 @@ public class Scores
 		this.judge = judge;
 		this.scores = scores;
 		count = scores.length;
-	}
-	public static ArrayList<Scores> getALScores(String lastEntry, String thisEntry, Scores tempScore, ArrayList<Scores> ALScores)
-	{
-		if (lastEntry.equals(thisEntry) && lastEntry != "")
-		{
-			ALScores.add(tempScore);
-		}
-		else
-		{
-			ALScores.clear();
-			ALScores = new ArrayList<Scores>();
-			ALScores.add(tempScore);
-		}
-		return ALScores;
 	}
 	public void gatherScores(int scoreCount, String[] splitLine)
 	{
@@ -67,11 +51,9 @@ public class Scores
 	{
 		return count;
 	}
-	
 	public int getScoreCount() { 
 		return scores.length;
 	}
-	
 	public int getTotal()
 	{
 		int sum = 0;
@@ -81,7 +63,6 @@ public class Scores
 		}
 		return sum;	
 	}
-	
 	public String toString() 
 	{
 		return "Judge " + judge + ": " + getTotal() + "   scores: " + Arrays.toString(scores);

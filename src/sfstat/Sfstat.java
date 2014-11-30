@@ -18,6 +18,7 @@ public class Sfstat
 		int SCORE_COUNT = 20;
 		String lastEntry = "";
 		ArrayList<Scores> ALScores = new ArrayList<Scores>();
+		ArrayList<Entry> ALEntries = new ArrayList<Entry>();
 		
 		try 
 		{
@@ -32,8 +33,9 @@ public class Sfstat
 				stats.addScore(tempScore); // Add all scores to a StatGenerator
 				String[] splitLine = line.split(",");
 				thisEntry = splitLine[0];
-				ALScores = Scores.getALScores(lastEntry, thisEntry, tempScore, ALScores);
-				System.out.println("lastEntry: " + lastEntry + " thisEntry: " + thisEntry + " " + tempScore.toString());
+				Entry nEntry = addEntry(lastEntry, thisEntry, tempScore, ALEntries, ALScores);
+				nEntry.setALScores(lastEntry, thisEntry, tempScore, ALScores);
+				System.out.println("entry: " + nEntry.getEntry() + " lastEntry: " + lastEntry + " thisEntry: " + thisEntry + " " + tempScore.toString());
 				lastEntry = thisEntry;
 			}
 		} 
@@ -71,5 +73,15 @@ public class Sfstat
 		
 		System.out.print("\nClusters: ");
 		IntArrayStats.getClusters(totals);
+	}
+	public static Entry addEntry(String lastEntry, String thisEntry, Scores tempScore, ArrayList<Entry> ALEntries, ArrayList<Scores> ALScores)
+	{
+		if (!lastEntry.equals(thisEntry) || lastEntry.equals(""))
+		{
+			Entry nEntry = new Entry(lastEntry, thisEntry, tempScore, ALScores);
+			ALEntries.add(nEntry);
+			return nEntry;
+		}
+		return ALEntries.get(ALEntries.size() - 1);
 	}
 }
