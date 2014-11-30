@@ -36,7 +36,7 @@ public class Sfstat
 				Entry nEntry = addEntry(lastEntry, thisEntry, tempScore, ALEntries);
 				nEntry.setALScores(lastEntry, thisEntry, tempScore, ALScores);
 				ALScores = nEntry.getALScores();
-				System.out.println("Size: " + ALScores.size());
+				System.out.println("Entry Count : " + ALEntries.size() + " Score Count: " + ALScores.size());
 				System.out.println("thisEntry: " + thisEntry + " " + tempScore.toString());
 				lastEntry = thisEntry;
 			}
