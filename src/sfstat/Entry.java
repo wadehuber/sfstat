@@ -6,12 +6,12 @@ public class Entry
 {
 	private String entry;
 	private int[] score;
+	private ArrayList<Scores> ALScores;
 
-	public Entry(String lastEntry, String entry, Scores tempScore, ArrayList<Scores> ALScores)
+	public Entry(String lastEntry, String entry, Scores tempScore)
 	{
 		setEntry(entry);
 		setScore(tempScore.getScores());
-		setALScores(lastEntry, entry, tempScore, ALScores);
 	}
 	public void setEntry(String entry)
 	{
@@ -29,9 +29,11 @@ public class Entry
 		}
 		else
 		{
+			ALScores.clear();
 			ALScores = new ArrayList<Scores>();
 			ALScores.add(tempScore);
 		}
+		this.ALScores = ALScores;
 	}
 	public String getEntry()
 	{
@@ -41,4 +43,8 @@ public class Entry
 	{
 		return score;
 	} 
+	public ArrayList<Scores> getALScores()
+	{
+		return ALScores;
+	}
 }
