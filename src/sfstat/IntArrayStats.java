@@ -1,6 +1,9 @@
 package sfstat;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class IntArrayStats {
 	
@@ -28,35 +31,30 @@ public class IntArrayStats {
 	}
 	
 	public static int mode(int[] a) {
+		HashMap<Integer, Integer> counts = new HashMap<Integer, Integer>();
 		int mode = 0;
-		int modeCount = 1;
-		int current = 0;
-		int count = 1;
 		
-		int[] vals = a.clone();
-		Arrays.sort(vals);
-		
-		for (int ii=1;ii<vals.length;ii++) {
-			if(vals[ii] == vals[current]) {
-				count++;
+		for (int ii=0;ii<a.length;ii++) {
+			if (counts.containsKey(a[ii])) {
+				Integer newCount = counts.get(a[ii]) + 1;
+				counts.put(a[ii], newCount);
 			}
 			else {
-				if (count > modeCount) { 
-					mode = ii - 1;
-					modeCount = count;
-				}
-				current = ii;
-				count = 1;
+				counts.put(a[ii], 1);
 			}
 		}
 		
-		if (count > modeCount) { 
-			mode = vals.length-1;
-			modeCount = count;
-		}
-	
-		return vals[mode];
+	    int maxCount = (Collections.max(counts.values()));
+	    for (Map.Entry<Integer,Integer> countEntry : counts.entrySet()) {
+	    	if (countEntry.getValue() == maxCount) {
+	    		mode = countEntry.getKey();
+	    	}
+	    }
+		
+		return mode;
 	}
+		
+	
 	
 	// unimplemented.
 	public static void getClusters(int[] a) {
