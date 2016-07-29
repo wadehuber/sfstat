@@ -2,26 +2,51 @@ package sfstat;
 
 import java.util.Arrays;
 
-public class Scores 
+/**
+ * Score class
+ * Each Score object contains the scores across all categories from a single judge
+ * 
+ * @author Wade Huber & Mitch Jenkins
+ * 
+ */
+public class Score 
 {
 	private String judge;
 	private int[] scores;
 	private int count;
 	
-	// Constructors
-	public Scores(String fileString, int scoreCount) 
+	/**
+	 * Full string constructor used when reading raw input
+	 * 
+	 * @param fileString Line containing scores
+	 * @param scoreCount Number of scores
+	 */
+	public Score(String fileString, int scoreCount) 
 	{
 		String[] splitLine = fileString.split(",");
 		judge = splitLine[2];
 		gatherScores(scoreCount, splitLine);
 	}
-	public Scores(String judge, int[] scores) 
+	
+	/** 
+	 * Constructor for processed data
+	 * 
+	 * @param judge Judges name
+	 * @param scores Array of scores
+	 */
+	public Score(String judge, int[] scores) 
 	{
 		super();
 		this.judge = judge;
 		this.scores = scores;
 		count = scores.length;
 	}
+	
+	/**
+	 * 
+	 * @param scoreCount The number of scores
+	 * @param splitLine Array of scires (as strings)
+	 */
 	public void gatherScores(int scoreCount, String[] splitLine)
 	{
 		scores = new int[scoreCount];
@@ -31,6 +56,7 @@ public class Scores
 			scores[ii] = Integer.parseInt(splitLine[ii+3]); 
 		}
 	}
+	
 	public String getJudge() 
 	{
 		return judge;

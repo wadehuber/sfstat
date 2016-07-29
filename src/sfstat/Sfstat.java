@@ -13,11 +13,11 @@ public class Sfstat
 		Scanner dataFile;
 		String line;
 		String filename="sfdata.csv";
-		Scores tempScore;
+		Score tempScore;
 		StatGenerator stats = new StatGenerator();
 		int SCORE_COUNT = 20;
 		String lastEntry = "";
-		ArrayList<Scores> ALScores = new ArrayList<Scores>();
+		ArrayList<Score> ALScores = new ArrayList<Score>();
 		ArrayList<Entry> ALEntries = new ArrayList<Entry>();
 		HashMap<String, Entry> entries = new HashMap<String,Entry>();
 		
@@ -31,7 +31,7 @@ public class Sfstat
 				int thisGrade;
 
 				line = dataFile.nextLine();
-				tempScore = new Scores(line, SCORE_COUNT);
+				tempScore = new Score(line, SCORE_COUNT);
 				stats.addScore(tempScore); // Add all scores to a StatGenerator
 				String[] splitLine = line.split(",");
 				thisEntry = splitLine[0];

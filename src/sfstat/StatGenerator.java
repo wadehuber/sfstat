@@ -2,23 +2,34 @@ package sfstat;
 
 import java.util.ArrayList;
 
+/**
+ * Stat Generation class
+ * Calculates different stats based on a list of Scores
+ * 
+ * @author Wade Huber & Mitch Jenkins
+ *
+ */
 public class StatGenerator {
 	
-	ArrayList<Scores> scores;
+	ArrayList<Score> scores;
 
+	/** 
+	 * Default Constructor 
+	 * Creates empty list
+	 */
 	public StatGenerator() {
 		super();
-		this.scores = new ArrayList<Scores>();
+		this.scores = new ArrayList<Score>();
 	}
 
-	public void addScore(Scores s) {
+	public void addScore(Score s) {
 		scores.add(s);
 	}
 	
 	public double getAverageTotal(){
 		int total = 0;
 		
-		for (Scores s : scores) {
+		for (Score s : scores) {
 			total += s.getTotal();
 		}
 		
@@ -30,7 +41,7 @@ public class StatGenerator {
 		
 		int ii=0;			
 		
-		for (Scores s : scores) {
+		for (Score s : scores) {
 			totals[ii] = s.getTotal();
 			ii++;
 		}
@@ -43,7 +54,7 @@ public class StatGenerator {
 		int numSubScores = scores.get(0).getCount();
 		double averages[] = new double[numSubScores];
 		
-		for (Scores s : scores) {
+		for (Score s : scores) {
 			int theseScores[] = s.getScores();
 			for (int ii=0;ii<numSubScores;ii++) {
 				averages[ii] += theseScores[ii];
@@ -69,6 +80,10 @@ public class StatGenerator {
 		return modes;
 	}
 	
+	/**
+	 * Calculate medians for each score category
+	 * @return double array of medians 
+	 */
 	public double[] getMedianScores() {
 		double medians[] = new double[scores.get(0).getCount()];
 		
@@ -86,7 +101,7 @@ public class StatGenerator {
 		int myInts[] = new int[scores.size()];
 		int ii=0;
 		
-		for (Scores s : scores) {
+		for (Score s : scores) {
 			myInts[ii]=s.getScores()[scoreIndex];
 			ii++;
 		}
@@ -97,7 +112,7 @@ public class StatGenerator {
 	public String toString() {
 		String ret = "";
 		
-		for (Scores s : scores) {
+		for (Score s : scores) {
 			ret += s + "\n";
 		}
 		return ret;
