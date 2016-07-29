@@ -3,9 +3,9 @@ package sfstat;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.ArrayList;
-
 public class Sfstat 
 {
 	public static void main(String[] args) 
@@ -19,6 +19,7 @@ public class Sfstat
 		String lastEntry = "";
 		ArrayList<Scores> ALScores = new ArrayList<Scores>();
 		ArrayList<Entry> ALEntries = new ArrayList<Entry>();
+		HashMap<String, Entry> entries = new HashMap<String,Entry>();
 		
 		try 
 		{
@@ -27,16 +28,15 @@ public class Sfstat
 			while (dataFile.hasNext()) 
 			{
 				String thisEntry;
+				int thisGrade;
 
 				line = dataFile.nextLine();
 				tempScore = new Scores(line, SCORE_COUNT);
 				stats.addScore(tempScore); // Add all scores to a StatGenerator
 				String[] splitLine = line.split(",");
 				thisEntry = splitLine[0];
-				Entry nEntry = addEntry(lastEntry, thisEntry, tempScore, ALEntries);
-				nEntry.setALScores(lastEntry, thisEntry, tempScore, ALScores);
-				ALScores = nEntry.getALScores();
-				System.out.println("Entry Count : " + ALEntries.size() + " Score Count: " + ALScores.size());
+				thisGrade = Integer.parseInt(splitLine[1]);
+				Entry nEntry = new Entry(thisEntry, thisGrade);
 				System.out.println("thisEntry: " + thisEntry + " " + tempScore.toString());
 				lastEntry = thisEntry;
 			}
@@ -76,14 +76,6 @@ public class Sfstat
 		System.out.print("\nClusters: ");
 		IntArrayStats.getClusters(totals);
 	}
-	public static Entry addEntry(String lastEntry, String thisEntry, Scores tempScore, ArrayList<Entry> ALEntries)
-	{
-		if (!lastEntry.equals(thisEntry) || lastEntry.equals(""))
-		{
-			Entry nEntry = new Entry(lastEntry, thisEntry, tempScore);
-			ALEntries.add(nEntry);
-			return nEntry;
-		}
-		return ALEntries.get(ALEntries.size() - 1);
-	}
+	
+
 }

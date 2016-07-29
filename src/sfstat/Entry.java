@@ -5,46 +5,38 @@ import java.util.ArrayList;
 public class Entry 
 {
 	private String entry;
-	private int[] score;
-	private ArrayList<Scores> ALScores;
+	private int grade;
+	private ArrayList<Scores> scores;
 
-	public Entry(String lastEntry, String entry, Scores tempScore)
-	{
-		setEntry(entry);
-		setScore(tempScore.getScores());
+
+	public Entry(String entry, int grade) {
+		super();
+		this.entry = entry;
+		this.grade = grade;
+		scores = new ArrayList<Scores>();
 	}
+
 	public void setEntry(String entry)
 	{
 		this.entry = entry;
 	}
-	public void setScore(int[] score)
+	public void addScores(Scores tempScore)
 	{
-		this.score = score;
-	}
-	public void setALScores(String lastEntry, String thisEntry, Scores tempScore, ArrayList<Scores> ALScores)
-	{
-		if (lastEntry.equals(thisEntry) && lastEntry != "")
-		{
-			ALScores.add(tempScore);
-		}
-		else
-		{
-			ALScores.clear();
-			ALScores = new ArrayList<Scores>();
-			ALScores.add(tempScore);
-		}
-		this.ALScores = ALScores;
+			scores.add(tempScore);
 	}
 	public String getEntry()
 	{
 		return entry;
 	}
-	public int[] getScore()
-	{
-		return score;
-	} 
+
 	public ArrayList<Scores> getALScores()
 	{
-		return ALScores;
+		return scores;
+	}
+	public int getGrade() {
+		return grade;
+	}
+	public void setGrade(int grade) {
+		this.grade = grade;
 	}
 }
