@@ -91,6 +91,10 @@ public class Score
 	}
 	public String toString() 
 	{
-		return "Judge " + judge + ": " + getTotal() + "   scores: " + Arrays.toString(scores);
+		String padding = "";
+		if (judge.length() < 3) {
+			padding = " ";
+		}
+		return padding + "Judge " + judge + ": " + getTotal() + "  scores: " + Arrays.toString(scores);
 	}
 }

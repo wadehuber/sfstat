@@ -8,7 +8,6 @@ public class Entry
 	private int grade;
 	private ArrayList<Score> scores;
 
-
 	public Entry(String entry, int grade) {
 		super();
 		this.entry = entry;

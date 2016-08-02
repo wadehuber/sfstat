@@ -5,8 +5,20 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+/** 
+ * Integer array class
+ * 
+ * @author Wade Huber & Mitch Jenkins
+ *
+ */
 public class IntArrayStats {
 	
+	/**
+	 * Calculate mean of an int array
+	 * 
+	 * @param a - integer array
+	 * @return mean of a
+	 */
 	public static double mean (int [] a) {
 		int total = 0;
 		for (int ii=0;ii<a.length;ii++) {
@@ -15,6 +27,12 @@ public class IntArrayStats {
 		return (total / (double) a.length);
 	}
 	
+	/**
+	 * Calculate median of an int array
+	 * 
+	 * @param a - integer array
+	 * @return mean of a
+	 */
 	public static double median(int[] a) {
 		int[] vals = a.clone();
 		Arrays.sort(vals);
@@ -30,6 +48,12 @@ public class IntArrayStats {
 		return ret;
 	}
 	
+	/**
+	 * Calculate mode of int array
+	 * 
+	 * @param a - integer array
+	 * @return mode of a
+	 */
 	public static int mode(int[] a) {
 		HashMap<Integer, Integer> counts = new HashMap<Integer, Integer>();
 		int mode = 0;
@@ -84,8 +108,14 @@ public class IntArrayStats {
 		   }
 		}
 	
+		System.out.println();
 	}
 	
+	/** 
+	 * Print int array 
+	 * 
+	 * @param a - integer array
+	 */
 	public static  void printArray(int[] a) {
 	
 		System.out.print("[ ");
